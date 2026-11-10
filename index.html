@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوات الشخصيات - ماب اسرق الشخصيات الغريبة</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#060911',
+                            card: '#0f1623',
+                            border: '#1a2436',
+                            accent: '#8B5CF6'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #060911;
+            color: #F3F4F6;
+        }
+
+        /* 1. Ultra Smooth Rainbow Gradient (Subtitle) */
+        @keyframes rainbowWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-rainbow-text {
+            background: linear-gradient(120deg, #ff2a6d, #ff5e00, #ffc800, #00ff66, #00f0ff, #7000ff, #ff00c8, #ff2a6d);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowWave 6s ease infinite;
+            filter: drop-shadow(0px 2px 12px rgba(255, 0, 150, 0.25));
+        }
+
+        .animated-rainbow-bg {
+            background: linear-gradient(135deg, #ff0055, #ff5000, #e6b800, #00e676, #00b0ff, #7a00ff, #ff00cc);
+            background-size: 300% 300%;
+            animation: rainbowWave 5s ease infinite;
+        }
+
+        /* 2. Black & White Animated Gradient (Secret) */
+        @keyframes bwFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-bw-badge {
+            background: linear-gradient(135deg, #09090b, #27272a, #71717a, #fafafa, #27272a, #09090b);
+            background-size: 300% 300%;
+            animation: bwFlow 6s ease infinite;
+        }
+
+        /* 3. Gold & Orange Animated Gradient (OG) */
+        @keyframes goldGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-og-bg {
+            background: linear-gradient(135deg, #f59e0b, #d97706, #ef4444, #fbbf24);
+            background-size: 250% 250%;
+            animation: goldGlow 4s ease infinite;
+        }
+
+        /* Slightly Angled / Slanted Corners (UiCorner / Skew Style) */
+        .card-angled {
+            border-radius: 12px;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+
+        /* 4. Mutation Text Colors & Effects */
+        .mut-gold { color: #FACC15 !important; text-shadow: 0 0 10px rgba(250, 204, 21, 0.4); }
+        .mut-diamond { color: #38BDF8 !important; text-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+        .mut-bloodrot { color: #EF4444 !important; text-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+        .mut-candy { color: #F0ABFC !important; text-shadow: 0 0 10px rgba(240, 171, 252, 0.5); }
+        .mut-lava { color: #FB923C !important; text-shadow: 0 0 10px rgba(251, 146, 60, 0.5); }
+        .mut-galaxy { color: #C084FC !important; text-shadow: 0 0 12px rgba(192, 132, 252, 0.6); }
+        .mut-yinyang { 
+            background: linear-gradient(90deg, #FFFFFF 50%, #64748B 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .mut-radioactive { color: #4ADE80 !important; text-shadow: 0 0 12px rgba(74, 222, 128, 0.7); }
+        .mut-cursed { 
+            background: linear-gradient(90deg, #EF4444, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.6));
+        }
+        .mut-rainbow {
+            background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowWave 3s linear infinite;
+        }
+        .mut-divine { 
+            background: linear-gradient(90deg, #FFE5A3, #FFFFFF, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+        }
+        .mut-cyber { 
+            background: linear-gradient(90deg, #38BDF8, #0284C7, #09090B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+        }
+        .mut-phantom { color: #64748B !important; opacity: 0.85; }
+        .mut-crystal { 
+            background: linear-gradient(90deg, #A855F7, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
+        }
+        .mut-eclipse { 
+            background: linear-gradient(90deg, #FACC15, #000000, #FACC15);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7));
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060911;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a2436;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B5CF6;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-purple-600 selection:text-white relative">
+
+    <!-- Floating Mutations Button (Side Drawer Toggle) -->
+    <button id="toggleMutationsBtn" onclick="toggleMutationDrawer()" 
+            class="fixed top-1/2 left-0 -translate-y-1/2 z-40 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-extrabold px-3 py-4 rounded-r-2xl shadow-2xl flex flex-col items-center gap-2 border-y border-r border-purple-400/40 transition-all hover:pl-5 group">
+        <i class="fa-solid fa-dna text-lg group-hover:rotate-180 transition-transform duration-500"></i>
+        <span class="text-xs uppercase tracking-widest [writing-mode:vertical-lr]">Mutations</span>
+    </button>
+
+    <!-- Side Mutations Drawer -->
+    <div id="mutationDrawerOverlay" onclick="toggleMutationDrawer()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="mutationDrawer" class="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-brand-card/95 border-r border-brand-border z-50 transform -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col justify-between p-5">
+        <div>
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-brand-border">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-dna text-purple-400 text-xl"></i>
+                    <h2 class="text-lg font-black text-white">اختر الطفرة (Mutations)</h2>
+                </div>
+                <button onclick="toggleMutationDrawer()" class="text-gray-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <p class="text-xs text-gray-400 mb-4">اختر طفرة لتغيير قوة الشخصية وتفعيل لونها الخاص:</p>
+
+            <div class="space-y-2 overflow-y-auto max-h-[calc(100vh-160px)] pr-1" id="drawerMutationsList">
+                <!-- Mutation buttons list rendered via JS -->
+            </div>
+        </div>
+
+        <div class="pt-3 border-t border-brand-border text-center text-[11px] text-gray-500">
+            الطفرة الحالية: <span id="currentDrawerMutLabel" class="text-purple-300 font-bold">Normal</span>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white px-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-gray-700/80 backdrop-blur-xl">
+            <i class="fa-solid fa-circle-check text-xl text-green-400"></i>
+            <span id="toast-message" class="font-bold text-sm sm:text-base">تم النسخ بنجاح!</span>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Header -->
+        <header class="text-center mb-8 relative">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-900/90 border border-gray-800 text-gray-300 text-xs sm:text-sm font-bold mb-4 shadow-inner">
+                <i class="fa-solid fa-bolt text-yellow-400 animate-pulse"></i>
+                <span>دليل القوى والتريدات والطفرات الرسمية</span>
+            </div>
+
+            <!-- Pure White Header -->
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-2 drop-shadow-md">
+                قوات الشخصيات
+            </h1>
+            
+            <!-- Animated Rainbow Wave Subtitle -->
+            <h2 class="text-2xl sm:text-4xl font-extrabold font-tajawal animated-rainbow-text tracking-wide">
+                ماب اسرق الشخصيات الغريبة
+            </h2>
+        </header>
+
+        <!-- Control Center (Search, Categories & Mutations Indicator) -->
+        <div class="bg-brand-card/90 backdrop-blur-2xl border border-brand-border rounded-3xl p-5 sm:p-7 mb-8 shadow-2xl space-y-6">
+            
+            <!-- Top Controls: Search & Categories -->
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="searchInput" placeholder="ابحث عن شخصية أو قوة..." 
+                           class="w-full bg-brand-dark border border-brand-border rounded-2xl py-3 pr-11 pl-4 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all text-sm">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 w-full md:w-auto justify-center" id="categoryFilters">
+                    <button data-category="all" class="category-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-black shadow-lg">
+                        الكل <span id="count-all" class="bg-black/20 px-2 py-0.5 rounded-md text-xs mr-1">0</span>
+                    </button>
+
+                    <button data-category="brainrot" class="category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-brand-dark text-white border border-brand-border hover:border-pink-500">
+                        <i class="fa-solid fa-brain text-pink-400 ml-1"></i> Brainrot God <span id="count-brainrot" class="bg-brand-card px-2 py-0.5 rounded-md text-xs mr-1 text-gray-400">0</span>
+                    </button>
+
+                    <button data-category="secret" class="category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-brand-dark text-white border border-brand-border hover:border-gray-400">
+                        <i class="fa-solid fa-user-secret text-gray-300 ml-1"></i> Secret <span id="count-secret" class="bg-brand-card px-2 py-0.5 rounded-md text-xs mr-1 text-gray-400">0</span>
+                    </button>
+
+                    <button data-category="og" class="category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-brand-dark text-white border border-brand-border hover:border-amber-400">
+                        <i class="fa-solid fa-crown text-amber-400 ml-1"></i> OG <span id="count-og" class="bg-brand-card px-2 py-0.5 rounded-md text-xs mr-1 text-gray-400">0</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Quick Active Mutation Indicator -->
+            <div class="pt-3 border-t border-brand-border/60 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i>
+                    <span class="text-xs sm:text-sm font-extrabold text-gray-300">الطفرة المفعلة:</span>
+                    <span id="activeMutationLabel" class="text-xs font-bold px-3 py-1 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30">Normal (1.0x)</span>
+                </div>
+                <button onclick="toggleMutationDrawer()" class="text-xs text-purple-400 hover:text-purple-300 font-bold underline flex items-center gap-1">
+                    <i class="fa-solid fa-sliders"></i> تغيير الطفرة
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Cards Grid -->
+        <div id="charactersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Dynamic Cards -->
+        </div>
+
+        <!-- No Results -->
+        <div id="noResults" class="hidden text-center py-16 bg-brand-card/40 rounded-3xl border border-brand-border mt-4">
+            <i class="fa-solid fa-ghost text-5xl text-gray-600 mb-4"></i>
+            <h3 class="text-xl font-bold text-gray-300 mb-1">لم يتم العثور على أية شخصية</h3>
+            <p class="text-gray-500 text-sm">جرب البحث بكلمة أخرى أو تصفير الفلاتر.</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-6 text-center text-xs text-gray-500 border-t border-brand-border/50 bg-brand-dark/80 backdrop-blur-md">
+        <p>موقع قوات الشخصيات لماب <span class="text-white font-bold">اسرق الشخصيات الغريبة</span> © 2026</p>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // Mutations Definition & Color Classes (Without Emojis)
+        const mutations = [
+            { id: "normal", label: "Normal", mult: 1.0, textClass: "text-white" },
+            { id: "gold", label: "Gold", mult: 1.05, textClass: "mut-gold" },
+            { id: "diamond", label: "Diamond", mult: 1.10, textClass: "mut-diamond" },
+            { id: "rainbow", label: "Rainbow", mult: 1.15, textClass: "mut-rainbow" },
+            { id: "bloodrot", label: "Bloodrot", mult: 1.20, textClass: "mut-bloodrot" },
+            { id: "candy", label: "Candy", mult: 1.25, textClass: "mut-candy" },
+            { id: "lava", label: "Lava", mult: 1.30, textClass: "mut-lava" },
+            { id: "galaxy", label: "Galaxy", mult: 1.36, textClass: "mut-galaxy" },
+            { id: "yinyang", label: "Yin Yang", mult: 1.42, textClass: "mut-yinyang" },
+            { id: "radioactive", label: "Radioactive", mult: 1.48, textClass: "mut-radioactive" },
+            { id: "cursed", label: "Cursed", mult: 1.55, textClass: "mut-cursed" },
+            { id: "divine", label: "Divine", mult: 1.62, textClass: "mut-divine" },
+            { id: "cyber", label: "Cyber", mult: 1.70, textClass: "mut-cyber" },
+            { id: "phantom", label: "Phantom", mult: 1.80, textClass: "mut-phantom" },
+            { id: "crystal", label: "Crystal", mult: 1.90, textClass: "mut-crystal" },
+            { id: "Eclipse", label: "Eclipse", mult: 2.00, textClass: "mut-eclipse" }
+        ];
+
+        // Raw Characters Dataset
+        const rawCharacters = [
+            // --- BRAINROT GOD ---
+            { name: "Girafa Celestre", basePower: 10000, rawPowerStr: "10k", category: "brainrot" },
+            { name: "Coco Elefanto", basePower: 15000, rawPowerStr: "15k", category: "brainrot" },
+            { name: "Tralalero Tralala", basePower: 22000, rawPowerStr: "22k", category: "brainrot" },
+            { name: "Matteo", basePower: 30000, rawPowerStr: "30k", category: "brainrot" },
+            { name: "Chihuanini Taconini", basePower: 38000, rawPowerStr: "38k", category: "brainrot" },
+            { name: "Gattatino Nyanino", basePower: 45000, rawPowerStr: "45k", category: "brainrot" },
+            { name: "Odin Din Din Dun", basePower: 55000, rawPowerStr: "55k", category: "brainrot" },
+            { name: "Statutino Libertino", basePower: 65000, rawPowerStr: "65k", category: "brainrot" },
+            { name: "Trenostruzzo Turbo 3000", basePower: 78000, rawPowerStr: "78k", category: "brainrot" },
+            { name: "Gattito Tacoto", basePower: 90000, rawPowerStr: "90k", category: "brainrot" },
+            { name: "Trippi Troppi Troppa Trippa", basePower: 105000, rawPowerStr: "105k", category: "brainrot" },
+            { name: "Capi Taco", basePower: 120000, rawPowerStr: "120k", category: "brainrot" },
+            { name: "Ballerino Lololo", basePower: 135000, rawPowerStr: "135k", category: "brainrot" },
+            { name: "Pakrahmatmamat", basePower: 150000, rawPowerStr: "150k", category: "brainrot" },
+            { name: "Tractoro Dinosauro", basePower: 165000, rawPowerStr: "165k", category: "brainrot" },
+            { name: "Pop pop Sahur", basePower: 180000, rawPowerStr: "180k", category: "brainrot" },
+            { name: "Las Cappuchinas", basePower: 195000, rawPowerStr: "195k", category: "brainrot" },
+            { name: "Bombardini Tortinii", basePower: 210000, rawPowerStr: "210k", category: "brainrot" },
+            { name: "Tartaruga Cisterna", basePower: 225000, rawPowerStr: "225k", category: "brainrot" },
+            { name: "Belula Beluga", basePower: 240000, rawPowerStr: "240k", category: "brainrot" },
+            { name: "Svinina-Bombardino", basePower: 260000, rawPowerStr: "260k", category: "brainrot" },
+            { name: "Raccooni-Jandelini", basePower: 280000, rawPowerStr: "280k", category: "brainrot" },
+            { name: "Noobini-Santanini", basePower: 310000, rawPowerStr: "310k", category: "brainrot" },
+            { name: "Frogo Elfo", basePower: 340000, rawPowerStr: "340k", category: "brainrot" },
+            { name: "Frio Ninja", basePower: 380000, rawPowerStr: "380k", category: "brainrot" },
+
+            // --- SECRET ---
+            { name: "Jackorilla", basePower: 1200000, rawPowerStr: "1.2M", category: "secret" },
+            { name: "Los Matteos", basePower: 1400000, rawPowerStr: "1.4M", category: "secret" },
+            { name: "Karkerkar Kurkur", basePower: 1600000, rawPowerStr: "1.6M", category: "secret" },
+            { name: "Bisonte Giuppitere", basePower: 1800000, rawPowerStr: "1.8M", category: "secret" },
+            { name: "La Vacca Saturno Saturnita", basePower: 2000000, rawPowerStr: "2.0M", category: "secret" },
+            { name: "Sammyni Spyderini", basePower: 2200000, rawPowerStr: "2.2M", category: "secret" },
+            { name: "Trenostruzzo Turbo 4000", basePower: 2400000, rawPowerStr: "2.4M", category: "secret" },
+            { name: "Torrtuginni Dragonfrutini", basePower: 2600000, rawPowerStr: "2.6M", category: "secret" },
+            { name: "Dul Dul Dul", basePower: 2800000, rawPowerStr: "2.8M", category: "secret" },
+            { name: "Blackhole Goat", basePower: 3000000, rawPowerStr: "3.0M", category: "secret" },
+            { name: "Chachechi", basePower: 3200000, rawPowerStr: "3.2M", category: "secret" },
+            { name: "Agarrini la Palini", basePower: 3400000, rawPowerStr: "3.4M", category: "secret" },
+            { name: "Los Spyderinis", basePower: 3600000, rawPowerStr: "3.6M", category: "secret" },
+            { name: "Extinct Tralalero", basePower: 3800000, rawPowerStr: "3.8M", category: "secret" },
+            { name: "La Cucaracha", basePower: 4000000, rawPowerStr: "4.0M", category: "secret" },
+            { name: "Zombie Tralala", basePower: 4200000, rawPowerStr: "4.2M", category: "secret" },
+            { name: "Los Tortus", basePower: 4400000, rawPowerStr: "4.4M", category: "secret" },
+            { name: "Vulturino Skeletono", basePower: 4600000, rawPowerStr: "4.6M", category: "secret" },
+            { name: "Los Tralaleritos", basePower: 4800000, rawPowerStr: "4.8M", category: "secret" },
+            { name: "Boatito Auratito", basePower: 5000000, rawPowerStr: "5.0M", category: "secret" },
+            { name: "Guerriro Digitale", basePower: 5300000, rawPowerStr: "5.3M", category: "secret" },
+            { name: "Yess my Examen", basePower: 5600000, rawPowerStr: "5.6M", category: "secret" },
+            { name: "La Vacca Prese Presente", basePower: 5900000, rawPowerStr: "5.9M", category: "secret" },
+            { name: "Reindeer Tralala", basePower: 6200000, rawPowerStr: "6.2M", category: "secret" },
+            { name: "La Karkerkar Combinasion", basePower: 6500000, rawPowerStr: "6.5M", category: "secret" },
+            { name: "Extinct Matteo", basePower: 6800000, rawPowerStr: "6.8M", category: "secret" },
+            { name: "Pumpkini Spyderini", basePower: 7100000, rawPowerStr: "7.1M", category: "secret" },
+            { name: "Rocco Disco", basePower: 7400000, rawPowerStr: "7.4M", category: "secret" },
+            { name: "Las Tralaleritas", basePower: 7700000, rawPowerStr: "7.7M", category: "secret" },
+            { name: "Frankentteo", basePower: 8000000, rawPowerStr: "8.0M", category: "secret" },
+            { name: "Los Trios", basePower: 8300000, rawPowerStr: "8.3M", category: "secret" },
+            { name: "Job Job Job Sahur", basePower: 8600000, rawPowerStr: "8.6M", category: "secret" },
+            { name: "Karker Sahur", basePower: 8900000, rawPowerStr: "8.9M", category: "secret" },
+            { name: "Los Karkeritos", basePower: 9200000, rawPowerStr: "9.2M", category: "secret" },
+            { name: "Las Vaquitas Saturnitas", basePower: 9500000, rawPowerStr: "9.5M", category: "secret" },
+            { name: "Santteo", basePower: 9800000, rawPowerStr: "9.8M", category: "secret" },
+            { name: "Fishboard", basePower: 10100000, rawPowerStr: "10.1M", category: "secret" },
+            { name: "Los Burritos", basePower: 10500000, rawPowerStr: "10.5M", category: "secret" },
+            { name: "La Grande Combinasion", basePower: 10900000, rawPowerStr: "10.9M", category: "secret" },
+            { name: "Nuclearo Dinossauro", basePower: 11300000, rawPowerStr: "11.3M", category: "secret" },
+                   { name: "Garama and Madundung", basePower: 11700000, rawPowerStr: "11.7M", category: "secret" },
+            { name: "Cerberus", basePower: 13000000, rawPowerStr: "13.0M", category: "secret" },
+            { name: "Dragon Cannelloni", basePower: 24100000, rawPowerStr: "24.1M", category: "secret" },
+            { name: "Los Dragons", basePower: 12500000, rawPowerStr: "12.5M", category: "secret" },
+            { name: "Griffin", basePower: 13000000, rawPowerStr: "13.0M", category: "secret" },
+            { name: "Phoenix", basePower: 13500000, rawPowerStr: "13.5M", category: "secret" },
+
+            // --- OG ---
+            { name: "Skibidi Toilet", basePower: 110000000, rawPowerStr: "100.0M", category: "og" },
+            { name: "Meowl", basePower: 170000000, rawPowerStr: "170.0M", category: "og" },
+            { name: "Strawberry Elephant", basePower: 290000000, rawPowerStr: "290.0M", category: "og" },
+            { name: "John Pork", basePower: 315000000, rawPowerStr: "315.0M", category: "og" },
+            { name: "Headless Horseman", basePower: 6700000000, rawPowerStr: "670.0M", category: "og" },
+            { name: "Spyder Elephant", basePower: 5000000000, rawPowerStr: "5b", category: "og" }
+        ];
+
+        // State Variables
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let currentMutation = mutations[0];
+
+        // Elements
+        const grid = document.getElementById('charactersGrid');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.category-btn');
+        const noResults = document.getElementById('noResults');
+        const activeMutationLabel = document.getElementById('activeMutationLabel');
+
+        // Helper Power Calculator
+        function calculatePower(basePower, rawPowerStr, multiplier) {
+            if (multiplier === 1.0) return rawPowerStr;
+            
+            if (rawPowerStr.toLowerCase() === '5b') {
+                const val = 5 * multiplier;
+                return val.toFixed(val % 1 === 0 ? 0 : 2) + "b";
+            }
+
+            const val = basePower * multiplier;
+            if (val >= 1000000000) {
+                return (val / 1000000000).toFixed(2).replace(/\.00$/, '') + "b";
+            }
+            if (val >= 1000000) {
+                return (val / 1000000).toFixed(2).replace(/\.00$/, '') + "M";
+            }
+            if (val >= 1000) {
+                return Math.round(val / 1000) + "k";
+            }
+            return Math.round(val).toString();
+        }
+
+        // Helper Badge Generators
+        function getCategoryBadge(cat) {
+            if (cat === 'brainrot') {
+                return `<span class="animated-rainbow-bg text-white font-extrabold text-[11px] px-3 py-1 rounded-lg shadow-md flex items-center gap-1">
+                            <i class="fa-solid fa-brain"></i> Brainrot God
+                        </span>`;
+            }
+            if (cat === 'secret') {
+                return `<span class="animated-bw-badge text-white font-extrabold text-[11px] px-3 py-1 rounded-lg shadow-md border border-gray-600 flex items-center gap-1">
+                            <i class="fa-solid fa-user-secret"></i> Secret
+                        </span>`;
+            }
+            return `<span class="animated-og-bg text-black font-extrabold text-[11px] px-3 py-1 rounded-lg shadow-md flex items-center gap-1">
+                        <i class="fa-solid fa-crown"></i> OG
+                    </span>`;
+        }
+
+        function getPowerBadge(powerStr, cat) {
+            let textColor = "text-pink-400";
+            if (cat === 'secret') textColor = "text-gray-100";
+            if (cat === 'og') textColor = "text-amber-300";
+
+            return `<div class="bg-brand-dark/95 border border-brand-border px-3.5 py-1.5 rounded-xl text-sm sm:text-base font-black font-mono ${textColor} shadow-inner tracking-wide">
+                        <span>${powerStr}</span>
+                    </div>`;
+        }
+
+        // Drawer Toggle Logic
+        function toggleMutationDrawer() {
+            const drawer = document.getElementById('mutationDrawer');
+            const overlay = document.getElementById('mutationDrawerOverlay');
+            const isOpen = !drawer.classList.contains('-translate-x-full');
+
+            if (isOpen) {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.remove('-translate-x-full');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        // Render Mutation Items inside Drawer (No Emojis)
+        function renderMutations() {
+            const drawerList = document.getElementById('drawerMutationsList');
+            drawerList.innerHTML = '';
+
+            mutations.forEach(mut => {
+                const btn = document.createElement('button');
+                const isActive = mut.id === currentMutation.id;
+                
+                btn.className = `w-full text-right px-4 py-3 rounded-xl border font-bold transition-all flex items-center justify-between card-angled ${
+                    isActive 
+                    ? 'border-purple-500 bg-purple-500/20 text-white shadow-lg' 
+                    : 'border-brand-border bg-brand-dark/60 text-gray-300 hover:border-gray-500 hover:bg-brand-dark'
+                }`;
+                
+                btn.innerHTML = `
+                    <span class="${mut.textClass} text-sm font-extrabold">${mut.label}</span>
+                    <span class="text-xs text-gray-400 font-mono">${mut.mult}x</span>
+                `;
+
+                btn.onclick = () => {
+                    currentMutation = mut;
+                    activeMutationLabel.textContent = `${mut.label} (${mut.mult}x)`;
+                    document.getElementById('currentDrawerMutLabel').textContent = `${mut.label} (${mut.mult}x)`;
+                    renderMutations();
+                    renderCharacters();
+                    toggleMutationDrawer();
+                };
+                drawerList.appendChild(btn);
+            });
+        }
+
+        // Character Cards Logic
+        function renderCharacters() {
+            grid.innerHTML = '';
+
+            const filtered = rawCharacters.filter(char => {
+                const matchesCategory = activeCategory === 'all' || char.category === activeCategory;
+                const calcPwr = calculatePower(char.basePower, char.rawPowerStr, currentMutation.mult);
+                const matchesSearch = char.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      calcPwr.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                
+                filtered.forEach(char => {
+                    const card = document.createElement('div');
+                    const calculatedPower = calculatePower(char.basePower, char.rawPowerStr, currentMutation.mult);
+                    const mutTag = currentMutation.id !== 'normal' ? ` [${currentMutation.label}]` : '';
+
+                    card.className = `bg-brand-card/90 border border-brand-border hover:border-transparent rounded-xl card-angled p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl flex flex-col justify-between group relative overflow-hidden`;
+
+                    card.innerHTML = `
+                        <!-- Purple to yellow subtle gradient overlay on hover -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+                        <div class="flex items-center justify-between gap-3 mb-3 relative z-10">
+                            ${getCategoryBadge(char.category)}
+                            ${getPowerBadge(calculatedPower, char.category)}
+                        </div>
+
+                        <div class="flex items-center justify-between gap-2 mt-2 relative z-10">
+                            <div>
+                                <h3 class="font-black text-base sm:text-lg tracking-wide transition-colors ${currentMutation.textClass}">
+                                    ${char.name}
+                                </h3>
+                                ${currentMutation.id !== 'normal' ? `<span class="text-[11px] font-bold text-gray-400 block">${currentMutation.label} Mutation</span>` : ''}
+                            </div>
+
+                            <button onclick="copyToClipboard('${char.name}${mutTag} - ${calculatedPower}')" 
+                                    title="نسخ الاسم والقوة"
+                                    class="bg-brand-dark hover:bg-gradient-to-r hover:from-purple-600 hover:to-yellow-500 text-gray-300 hover:text-white p-2.5 rounded-lg border border-brand-border transition-all active:scale-95 shrink-0 flex items-center justify-center">
+                                <i class="fa-regular fa-copy text-sm"></i>
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        // Copy Function
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast(`تم النسخ: ${text}`);
+            } catch (err) {
+                showToast('تعذر النسخ تلقائياً');
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        // Show Toast Notification
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            
+            toastMsg.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // Update Counter Numbers
+        function updateCounts() {
+            document.getElementById('count-all').textContent = rawCharacters.length;
+            document.getElementById('count-brainrot').textContent = rawCharacters.filter(c => c.category === 'brainrot').length;
+            document.getElementById('count-secret').textContent = rawCharacters.filter(c => c.category === 'secret').length;
+            document.getElementById('count-og').textContent = rawCharacters.filter(c => c.category === 'og').length;
+        }
+
+        // Filter Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-white', 'text-black', 'shadow-lg', 'animated-rainbow-bg', 'animated-bw-badge', 'animated-og-bg');
+                    b.classList.add('bg-brand-dark', 'text-white', 'border-brand-border');
+                });
+
+                btn.classList.add('active');
+                btn.classList.remove('bg-brand-dark', 'border-brand-border');
+
+                const cat = btn.getAttribute('data-category');
+                if (cat === 'all') btn.classList.add('bg-white', 'text-black');
+                if (cat === 'brainrot') btn.classList.add('animated-rainbow-bg', 'text-white');
+                if (cat === 'secret') btn.classList.add('animated-bw-badge', 'text-white');
+                if (cat === 'og') btn.classList.add('animated-og-bg', 'text-black');
+
+                activeCategory = cat;
+                renderCharacters();
+            });
+        });
+
+        // Search Input Event
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderCharacters();
+        });
+
+        // Initialize Page
+        window.onload = () => {
+            updateCounts();
+            renderMutations();
+            renderCharacters();
+        };
+    </script>
+</body>
+</html>
